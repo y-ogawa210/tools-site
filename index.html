@@ -1,87 +1,152 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>業務効率化ツール & 学習ツールまとめ（簡易版）</title>
+  <meta charset="UTF-8" />
+  <title>Y-Ogawa Tools（試作ツール置き場）</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     body {
       font-family: sans-serif;
-      margin: 20px;
-      line-height: 1.7;
+      margin: 0;
+      padding: 0;
+      background: #f5f5f5;
     }
-    h1 {
-      font-size: 24px;
-      margin-bottom: 10px;
+
+    header {
+      background: #3f72af;
+      color: white;
+      padding: 16px;
+      text-align: center;
     }
-    h2 {
-      margin-top: 30px;
+
+    header h1 {
+      margin: 0;
       font-size: 20px;
-      border-left: 4px solid #4CAF50;
+    }
+
+    header p {
+      margin: 4px 0 0;
+      font-size: 13px;
+      opacity: 0.9;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    h2 {
+      border-left: 4px solid #3f72af;
       padding-left: 8px;
+      margin-top: 32px;
+      font-size: 18px;
     }
-    ul {
-      padding-left: 20px;
+
+    .tool-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
     }
-    a {
-      color: #0066cc;
-      text-decoration: none;
+
+    .tool-card {
+      background: white;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      transition: 0.2s;
     }
-    a:hover {
-      text-decoration: underline;
+
+    .tool-card:hover {
+      background: #f0f8ff;
+      border-color: #3f72af;
+    }
+
+    .tool-card h3 {
+      margin: 0 0 6px;
+      font-size: 16px;
+      color: #333;
+    }
+
+    .tool-card p {
+      margin: 0 0 8px;
+      font-size: 13px;
+      color: #555;
+    }
+
+    .tool-card a {
+      font-size: 13px;
+      color: #3f72af;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 11px;
+      color: #666;
+      padding: 20px 0;
+      margin-top: 40px;
     }
   </style>
 </head>
 <body>
 
-  <h1>業務効率化ツール & 学習ツールまとめ（仮）</h1>
-  <p>※ 今後どんどん追加・改善していく予定です。</p>
+<header>
+  <h1>Y-Ogawa Tools（試作ツール置き場）</h1>
+  <p>まだ作り途中ですが、少しずつ増やしていきます。</p>
+</header>
 
-  <h2>音声暗記ツール</h2>
-  <ul>
-    <li><a href="https://y-ogawa210.github.io/audio-learning/">音声暗記ツール</a></li>
-  </ul>
+<div class="container">
 
-  <h2>日付自動生成ツール</h2>
-  <ul>
-    <li><a href="https://y-ogawa210.github.io/date-generator/">Excel日付自動生成ツール</a></li>
-  </ul>
+  <h2>業務効率化ツール</h2>
+  <div class="tool-list">
 
-  <h2>ピボットテーブル学習アプリ</h2>
-  <ul>
-    <li><a href="https://y-ogawa210.github.io/pivot/">ピボットテーブル学習アプリ</a></li>
-  </ul>
-  
-  <h2>ダミーデータ生成ツール</h2>
-  <ul>
-    <li><a href="https://y-ogawa210.github.io/create_dummy_date/">ダミーデータ生成ツール</a></li>
-  </ul>
+    <div class="tool-card">
+      <h3>日付自動生成ツール</h3>
+      <p>開始日から連続した日付を作る簡単なツールです。</p>
+      <a href="https://y-ogawa210.github.io/tools-site/date-generator/" target="_blank">開く →</a>
+    </div>
 
-  <h2>PC環境確認ツール</h2>
-  <ul>
-    <li><a href="https://y-ogawa210.github.io/create_dummy_date/">PC環境確認ツール</li>
-  </ul>
+    <div class="tool-card">
+      <h3>ダミーデータ生成ツール</h3>
+      <p>テスト用のデータを作るためのツールです。</p>
+      <a href="https://y-ogawa210.github.io/tools-site/dummy-data-generator/" target="_blank">開く →</a>
+    </div>
 
-<h3>お問い合わせはこちらから</h3>
-<form action="https://formspree.io/f/meeqdgqk" method="POST">
-  <label>メールアドレス（必須）</label><br>
-  <input type="email" name="email" required><br><br>
+    <div class="tool-card">
+      <h3>PC環境確認ツール</h3>
+      <p>ブラウザや画面サイズなどを確認できます。</p>
+      <a href="https://y-ogawa210.github.io/tools-site/pcinfo/" target="_blank">開く →</a>
+    </div>
 
-  <label>ご相談内容（必須）</label><br>
-  <textarea name="message" required></textarea><br><br>
+  </div>
 
-  <button type="submit">送信する</button>
-</form>
+  <h2>学習支援ツール</h2>
+  <div class="tool-list">
 
+    <div class="tool-card">
+      <h3>音声暗記ツール</h3>
+      <p>テキストを音声にして繰り返し聞けます。</p>
+      <a href="https://y-ogawa210.github.io/tools-site/audio-memorization/" target="_blank">開く →</a>
+    </div>
+
+    <div class="tool-card">
+      <h3>ピボットテーブル学習アプリ</h3>
+      <p>ピボットの考え方をざっくり学べるツールです。</p>
+      <a href="https://y-ogawa210.github.io/tools-site/pivot-learning/" target="_blank">開く →</a>
+    </div>
+
+  </div>
+
+  <h2>お問い合わせ</h2>
+  <p>ツールの改善やご意見などあれば、こちらからどうぞ。</p>
+  <p><a href="/tools-site/contact/">お問い合わせフォーム →</a></p>
+
+</div>
+
+<footer>
+  © 2025 Y-Ogawa Tools（試作版）
+</footer>
 
 </body>
-
 </html>
-
-
-
-
-
-
-
-
