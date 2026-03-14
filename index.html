@@ -1,458 +1,245 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>Y-Ogawa Tools</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <title>Y-Ogawa Tools（試作ツール置き場）</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    :root {
-      --bg: #f5f7fb;
-      --card-bg: #ffffff;
-      --text-main: #222;
-      --text-sub: #666;
-      --primary: #0066ff;
-      --primary-dark: #004ecc;
-      --border-radius: 12px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
     body {
+      font-family: sans-serif;
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg);
-      color: var(--text-main);
+      padding: 0;
+      background: #f5f5f5;
     }
 
-    /* ヘッダー */
     header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: rgba(245, 247, 251, 0.95);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid #e0e4f0;
+      background: #3f72af;
+      color: white;
+      padding: 16px;
+      text-align: center;
     }
 
-    .header-inner {
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 10px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
+    header h1 {
+      margin: 0;
+      font-size: 20px;
     }
 
-    .logo {
-      font-weight: 700;
-      font-size: 18px;
-      letter-spacing: 0.03em;
-    }
-
-    .logo span {
-      font-weight: 400;
-      font-size: 12px;
-      color: var(--text-sub);
-      margin-left: 6px;
-    }
-
-    nav {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    nav a {
+    header p {
+      margin: 4px 0 0;
       font-size: 13px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      text-decoration: none;
-      color: var(--text-sub);
-      background: transparent;
-      border: 1px solid transparent;
-      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+      opacity: 0.9;
     }
 
-    nav a:hover {
-      background: #e3ebff;
-      color: var(--primary-dark);
-      border-color: #c5d4ff;
-    }
-
-    /* メイン */
-    main {
-      max-width: 1080px;
+    .container {
+      max-width: 900px;
       margin: 0 auto;
-      padding: 20px 16px 40px;
+      padding: 16px;
     }
 
-    .hero {
-      margin: 12px 0 24px;
+    h2 {
+      border-left: 4px solid #3f72af;
+      padding-left: 8px;
+      margin-top: 32px;
+      font-size: 18px;
     }
 
-    .hero-title {
-      font-size: 24px;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-
-    .hero-sub {
-      font-size: 14px;
-      color: var(--text-sub);
-      line-height: 1.6;
-    }
-
-    .section {
-      margin-top: 28px;
-    }
-
-    .section-title {
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .section-title span {
-      font-size: 12px;
-      font-weight: 400;
-      color: var(--text-sub);
-    }
-
-    .tool-grid {
+    .tool-list {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
     }
 
     .tool-card {
-      background: var(--card-bg);
-      border-radius: var(--border-radius);
-      padding: 16px 16px 14px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      border: 1px solid #e3e7f3;
-      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+      background: white;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      transition: 0.2s;
     }
 
     .tool-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 18px rgba(0,0,0,0.10);
-      border-color: #c5d4ff;
+      background: #f0f8ff;
+      border-color: #3f72af;
     }
 
-    .tool-header {
-      display: flex;
-      align-items: center;
-      gap: 8px;
+    .tool-card h3 {
+      margin: 0 0 6px;
+      font-size: 16px;
+      color: #333;
     }
 
-    .icon {
-      font-size: 26px;
-    }
-
-    .tool-name {
-      font-size: 15px;
-      font-weight: 600;
-    }
-
-    .tool-desc {
+    .tool-card p {
+      margin: 0 0 8px;
       font-size: 13px;
-      color: var(--text-sub);
-      line-height: 1.5;
-      min-height: 2.8em;
+      color: #555;
     }
 
-    .tool-meta {
-      margin-top: 2px;
-      font-size: 11px;
-      color: #9aa0b5;
-    }
-
-    .tool-footer {
-      margin-top: 8px;
-      display: flex;
-      justify-content: flex-end;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 6px 14px;
+    .tool-card a {
       font-size: 13px;
-      border-radius: 999px;
-      text-decoration: none;
-      background: var(--primary);
-      color: #fff;
-      font-weight: 600;
-      border: none;
-      cursor: pointer;
-      transition: background 0.15s ease, transform 0.1s ease;
-    }
-
-    .btn:hover {
-      background: var(--primary-dark);
-      transform: translateY(-1px);
-    }
-
-    /* カテゴリ別の淡い背景 */
-    .cat-work {
-      background: linear-gradient(135deg, #f3f7ff, #ffffff);
-    }
-
-    .cat-learn {
-      background: linear-gradient(135deg, #f3fff7, #ffffff);
-    }
-
-    .cat-think {
-      background: linear-gradient(135deg, #fff9f3, #ffffff);
-    }
-
-    .cat-visual {
-      background: linear-gradient(135deg, #f9f3ff, #ffffff);
+      color: #3f72af;
     }
 
     footer {
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 12px 16px 24px;
+      text-align: center;
       font-size: 11px;
-      color: #9aa0b5;
-      text-align: right;
-    }
-
-    @media (max-width: 600px) {
-      .hero-title {
-        font-size: 20px;
-      }
-      .header-inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      nav {
-        justify-content: flex-start;
-      }
+      color: #666;
+      padding: 20px 0;
+      margin-top: 40px;
     }
   </style>
 </head>
 <body>
 
 <header>
-  <div class="header-inner">
-    <div class="logo">
-      Y-Ogawa Tools
-      <span>小さなWebツールで、仕事と学びを少しだけ楽に。</span>
-    </div>
-    <nav>
-      <a href="#work">仕事効率化</a>
-      <a href="#learn">学習・教育</a>
-      <a href="#think">思考整理</a>
-      <a href="#visual">シミュレーション・可視化</a>
-    </nav>
-  </div>
+  <h1>Y-Ogawa Tools（試作ツール置き場）</h1>
+  <p>このサイトは、業務効率化や学習支援のための小さなWebツールをまとめた試作置き場です。</p>
+  <br>少しずつ増やしていきます。。。
 </header>
 
-<main>
-  <section class="hero">
-    <div class="hero-title">小さなWebツールのポータル</div>
-    <div class="hero-sub">
-      日々の業務や学習で「ちょっと面倒」「毎回同じことをしている」と感じる作業を、<br>
-      ブラウザだけで完結するシンプルなツールで置き換えていきます。
+<div class="container">
+
+  <!-- ▼▼▼ 追加：思考整理カテゴリ ▼▼▼ -->
+  <h2>記事</h2>
+  <div class="tool-list">
+
+    <div class="tool-card">
+      <h3>思考整理ツール（考えがまとまらない時に）</h3>
+      <p>頭の中のモヤモヤを分解し、整理し、行動に落とし込むための考えをまとめています。</p>
+      <a href="https://y-ogawa210.github.io/shikou-seiri/">こちら</a>
     </div>
-  </section>
 
-  <!-- 仕事効率化 -->
-  <section class="section" id="work">
-    <div class="section-title">
-      仕事効率化
-      <span>日々のルーチンや事務作業を、できるだけ自動で・シンプルに。</span>
+  </div>
+  <!-- ▲▲▲ 追加ここまで ▲▲▲ -->
+
+  <h2>業務効率化ツール</h2>
+  <div class="tool-list">
+
+    <div class="tool-card">
+      <h3>日付自動生成ツール</h3>
+      <p>開始日から連続した日付を作る簡単なツールです。</p>
+      <a href="https://y-ogawa210.github.io/date-generator/">こちら</a>
     </div>
-    <div class="tool-grid">
-      <div class="tool-card cat-work">
-        <div class="tool-header">
-          <div class="icon">📅</div>
-          <div class="tool-name">日付生成ツール</div>
-        </div>
-        <div class="tool-desc">
-          開始日と日数を入力するだけで、連続した日付リストを一括生成できます。
-        </div>
-        <div class="tool-meta">Excelやスケジュール表作成の下準備に。</div>
-        <div class="tool-footer">
-          <a href="https://y-ogawa210.github.io/date-generator/" class="btn">開く</a>
-        </div>
-      </div>
 
-      <div class="tool-card cat-work">
-        <div class="tool-header">
-          <div class="icon">📊</div>
-          <div class="tool-name">ダミーデータ生成</div>
-        </div>
-        <div class="tool-desc">
-          テスト用の名前・数値・日付などをまとめて生成し、検証やデモに使えます。
-        </div>
-        <div class="tool-meta">検証環境づくりを素早く。</div>
-        <div class="tool-footer">
-          <a href="https://y-ogawa210.github.io/dummy-data/" class="btn">開く</a>
-        </div>
-      </div>
-
-      <div class="tool-card cat-work">
-        <div class="tool-header">
-          <div class="icon">💻</div>
-          <div class="tool-name">PC環境確認</div>
-        </div>
-        <div class="tool-desc">
-          ブラウザや画面サイズなど、サポートや検証に必要な環境情報を一画面で確認できます。
-        </div>
-        <div class="tool-meta">問い合わせ対応や動作確認に。</div>
-        <div class="tool-footer">
-          <a href="https://y-ogawa210.github.io/env-check/" class="btn">開く</a>
-        </div>
-      </div>
-
-      <div class="tool-card cat-work">
-        <div class="tool-header">
-          <div class="icon">🔍</div>
-          <div class="tool-name">Excel検索サポート</div>
-        </div>
-        <div class="tool-desc">
-          条件に応じた検索式やフィルター条件を、対話的に組み立てることができます。
-        </div>
-        <div class="tool-meta">関数が苦手な人のための補助ツール。</div>
-        <div class="tool-footer">
-          <a href="https://y-ogawa210.github.io/excel-search/" class="btn">開く</a>
-        </div>
-      </div>
+    <div class="tool-card">
+      <h3>ダミーデータ生成ツール</h3>
+      <p>テスト用のデータを作るためのツールです。</p>
+      <a href="https://y-ogawa210.github.io/create-dummy-date/">こちら</a>
     </div>
-  </section>
 
-  <!-- 学習・教育 -->
-  <section class="section" id="learn">
-    <div class="section-title">
-      学習・教育
-      <span>「使いながら理解が深まる」ことを重視した学習支援ツール。</span>
+    <div class="tool-card">
+      <h3>PC環境確認ツール</h3>
+      <p>ブラウザや画面サイズなどを確認できます。</p>
+      <a href="https://y-ogawa210.github.io/pcinfo/">こちら</a>
     </div>
-    <div class="tool-grid">
-      <div class="tool-card cat-learn">
-        <div class="tool-header">
-          <div class="icon">🔊</div>
-          <div class="tool-name">音声暗記ツール</div>
-        </div>
-        <div class="tool-desc">
-          自分の声や音声を使って、単語やフレーズを繰り返し聞きながら暗記できます。
-        </div>
-        <div class="tool-meta">耳から覚えたい人向け。</div>
-        <div class="tool-footer">
-          <a href="https://y-ogawa210.github.io/voice-memorize/" class="btn">開く</a>
-        </div>
-      </div>
 
-      <div class="tool-card cat-learn">
-        <div class="tool-header">
-          <div class="icon">🎧</div>
-          <div class="tool-name">ディクテーション</div>
-        </div>
-        <div class="tool-desc">
-          音声を聞き取りながら入力し、答え合わせを通じてリスニング力を鍛えられます。
-        </div>
-        <div class="tool-meta">英語学習や語学学習に。</div>
-        <div class="tool-footer">
-          <a href="https://y-ogawa210.github.io/dictation/" class="btn">開く</a>
-        </div>
-      </div>
-
-      <div class="tool-card cat-learn">
-        <div class="tool-header">
-          <div class="icon">📈</div>
-          <div class="tool-name">一次関数グラフ</div>
-        </div>
-        <div class="tool-desc">
-          スライダーで係数を動かしながら、一次関数のグラフの変化を直感的に理解できます。
-        </div>
-        <div class="tool-meta">数学の「感覚」をつかむために。</div>
-        <div class="tool-footer">
-          <a href="https://y-ogawa210.github.io/linear-function/" class="btn">開く</a>
-        </div>
-      </div>
-
-      <div class="tool-card cat-learn">
-        <div class="tool-header">
-          <div class="icon">✏️</div>
-          <div class="tool-name">英語穴埋め</div>
-        </div>
-        <div class="tool-desc">
-          穴埋め形式で英文を完成させながら、文法や表現を自然に身につけられます。
-        </div>
-        <div class="tool-meta">短時間でサクッと復習。</div>
-        <div class="tool-footer">
-          <a href="https://y-ogawa210.github.io/english-fill/" class="btn">開く</a>
-        </div>
-      </div>
+    <div class="tool-card">
+      <h3>Excel内キーワード検索ツール</h3>
+      <p>Excel内のキーワードを検索するツールです。</p>
+      <a href="https://y-ogawa210.github.io/in-excel-search/">こちら</a>
     </div>
-  </section>
 
-  <!-- 思考整理 -->
-  <section class="section" id="think">
-    <div class="section-title">
-      思考整理
-      <span>考えを「見える形」にして、次の一歩を決めるためのツール。</span>
+     <div class="tool-card">
+      <h3>文字数・バイト数チェックツール</h3>
+      <p>テキストボックスに文章を書いたら文字数とバイト数が表示されます。</p>
+      <a href="https://y-ogawa210.github.io/stby/">こちら</a>
     </div>
-    <div class="tool-grid">
-      <div class="tool-card cat-think">
-        <div class="tool-header">
-          <div class="icon">🧠</div>
-          <div class="tool-name">SWOT分析シート</div>
-        </div>
-        <div class="tool-desc">
-          強み・弱み・機会・脅威を整理しながら、個人やプロジェクトの現状を俯瞰できます。
-        </div>
-        <div class="tool-meta">キャリアや企画の整理に。</div>
-        <div class="tool-footer">
-          <a href="https://y-ogawa210.github.io/swot/" class="btn">開く</a>
-        </div>
-      </div>
 
-      <!-- 今後の思考整理ツールをここに追加 -->
+    <div class="tool-card">
+      <h3>一言メモ</h3>
+      <p>思いついたことを一言でメモできます。</p>
+      <a href="https://y-ogawa210.github.io/hitokotomemo/">こちら</a>
     </div>
-  </section>
 
-  <!-- シミュレーション・可視化 -->
-  <section class="section" id="visual">
-    <div class="section-title">
-      シミュレーション・可視化
-      <span>数式や確率、構造を「動き」として体感するためのツール。</span>
+    <div class="tool-card">
+      <h3>シンプルマインドマップ</h3>
+      <p>線がないマインドマップで思いついたことを気軽に並べられます。</p>
+      <a href="https://y-ogawa210.github.io/simmin/">こちら</a>
     </div>
-    <div class="tool-grid">
-      <div class="tool-card cat-visual">
-        <div class="tool-header">
-          <div class="icon">🌳</div>
-          <div class="tool-name">樹形図ジェネレーター（予定）</div>
-        </div>
-        <div class="tool-desc">
-          n段階の確率付き樹形図を生成し、分岐と確率の関係を視覚的に理解できるツールを準備中です。
-        </div>
-        <div class="tool-meta">数学・確率の可視化。</div>
-        <div class="tool-footer">
-          <span style="font-size:12px; color:#9aa0b5;">Coming soon</span>
-        </div>
-      </div>
+  </div>
+  
+  <h2>学習支援ツール</h2>
+  <div class="tool-list">
 
-      <!-- 他の可視化ツールを今後追加 -->
+    <div class="tool-card">
+      <h3>音声暗記ツール</h3>
+      <p>テキストを音声にして繰り返し聞けます。</p>
+      <a href="https://y-ogawa210.github.io/audio-learning/">こちら</a>
     </div>
-  </section>
-</main>
+
+    <div class="tool-card">
+      <h3>ピボットテーブル学習アプリ</h3>
+      <p>ピボットテーブルのとっかかりにどうぞ。ピボットの考え方をざっくり学べるツールです。</p>
+      <a href="https://y-ogawa210.github.io/pivot/">こちら</a>
+    </div>
+
+    
+    <div class="tool-card">
+      <h3>ソルフェジオ周波数ツール</h3>
+      <p>ソルフェジオ周波数聞けます。途中で広告の音が出るとかはないです。</p>
+      <a href="https://y-ogawa210.github.io/oto/">こちら</a>
+    </div>
+
+    <div class="tool-card">
+      <h3>ディクテーション読み上げツール</h3>
+      <p>入力された英語の文章を読み上げます。</p>
+      <a href="https://y-ogawa210.github.io/dictate/">こちら</a>
+    </div>
+
+    <div class="tool-card">
+      <h3>一次関数確認ツール</h3>
+      <p>一次関数のグラフを動かして理解を深めることができます。</p>
+      <a href="https://y-ogawa210.github.io/ichijikansu/">こちら</a>
+    </div>
+
+    <div class="tool-card">
+      <h3>英文ランダム穴埋めツール</h3>
+      <p>英文を一部穴埋めにすることで思い出す作業が発生し、理解を深めることができます。</p>
+      <a href="https://y-ogawa210.github.io/eibun-anaume/">こちら</a>
+    </div>
+    
+
+    
+  </div>
+
+</div>
+
+ 
+  <form action="https://formspree.io/f/meeqdgqk" method="POST"
+  style="background:#fff;padding:16px;border-radius:8px;border:1px solid #ddd;
+         max-width:800px; margin: 0 auto; display:block;">
+
+<h2>お問い合わせ</h2>
+<p>ツールの改善やご意見などあれば、こちらからどうぞ。</p>
+         
+  <label>お名前（任意）<br>
+    <input type="text" name="name" style="width:95;padding:8px;margin-top:4px;margin-bottom:12px;">
+  </label><br>
+
+  <label>メールアドレス（返信が必要な場合）<br>
+    <input type="email" name="email" style="width:95%;padding:8px;margin-top:4px;margin-bottom:12px;">
+  </label><br>
+
+  <label>お問い合わせ内容<br>
+    <textarea name="message" required rows="5" style="width:95%;padding:8px;margin-top:4px;margin-bottom:12px;"></textarea>
+  </label><br>
+
+  <button type="submit"
+    style="padding:10px 16px;background:#3f72af;color:white;border:none;border-radius:4px;cursor:pointer;">
+    送信する
+  </button>
+</form>
+
 
 <footer>
-  © Y-Ogawa Tools
+  © 2025 Y-Ogawa Tools（試作版）
 </footer>
 
 </body>
 </html>
+
+
+
+
+
 
